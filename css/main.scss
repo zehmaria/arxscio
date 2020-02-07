@@ -1,0 +1,55 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "UTF-8";
+
+/* merriweather-regular - latin */
+@font-face {
+    font-family: 'GFMerriweather';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Merriweather Regular'), local('Merriweather-Regular'),
+         url('../fonts/merriweather-v21-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/merriweather-v21-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* dancing-script-regular - latin */
+@font-face {
+    font-family: 'GFDancingScript';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Dancing Script'),
+         url('../fonts/dancing-script-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/dancing-script-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+// Our variables
+$pri-font-family:  'GFMerriweather', Arial, sans-serif;
+$sec-font-family:  'GFDancingScript', Arial, sans-serif;
+$pri-font-size:    16px;
+$small-font-size:  12px;
+$pri-line-height:  1.7;
+$aresponse:        85em;
+$bresponse:        65em;
+$cresponse:        30em;
+
+$bg-l:             #f3f5f3;
+$bg-d:             #0e0e10;
+$text-white:       mix($bg-l,black,92%);
+$text-black:       mix($bg-d,white,92%);
+
+$pri-color:        #91A7AE;
+//$pri-color:        #cd596b;
+
+$sec-color:        #417090;
+$ter-color:        darken($sec-color,25);
+
+$extra-color:      mix($bg-l,$bg-d,50%);
+
+// Width and Height of stuff
+$max-width:        51;
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import "mixins", "base", "list", "nav", "sidebar",
+        "sidebars", "grid", "novel", "responsive";

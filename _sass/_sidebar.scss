@@ -1,0 +1,26 @@
+.sidebar {
+    .list-wrapper {
+        @include POS(absolute,0,0,$zi:25,$o:visible);
+        @include BLO(26em,auto,$cl:var(--t-white),
+                     $bg:var(--sec-color),$d:none);
+        max-width: 100%;
+        ul {
+            margin:4px;padding:8px;text-align:center;height:100%;
+            border: 3px double var(--ter-color);overflow:auto;
+            max-height:calc(100vh - 2 * var(--nav-width) - 8px);
+            li {
+                text-align:left;
+                &:hover {
+                    background: rgba(0,0,0,0.1);
+                    border-bottom: 1px solid var(--ter-color);
+                }
+                &:active { background: rgba(0,0,0,0.25); }
+            }
+        }
+    }
+}
+.sb-ctrl { position:fixed;left:-100%; }
+.sb-ctrl:checked + .sidebar {
+    .nav-block a {color:var(--sec-color);}
+    .list-wrapper {display:block;}
+}

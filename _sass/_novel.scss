@@ -1,0 +1,28 @@
+
+.novel-status {
+    font-family:$sec-font-family; float: right;
+    margin-top: 0.75em; margin-bottom: 0.75em;
+    font-size: 1.2em; line-height: 1.5;
+}
+
+.novel-cover {
+    margin: auto;
+    margin-top: 1em;
+    width: 100%; height: auto;
+}
+
+//**name**![map](./map.png#map)
+img[src$='#map'] {
+    @include POS(fixed,1em,1em,50%);
+    @include BLO($m:auto);
+    @include shadow();
+    pointer-events: none;
+    max-width:calc(100% - 2em);
+    max-height:calc(100% - 2*var(--nav-width));
+    border:3px solid var(--sec-color);
+    display: none;
+    transform: translate(0%, -50%);
+}
+strong:hover + img[src$='#map'] {
+    display: block;
+}

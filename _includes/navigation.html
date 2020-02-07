@@ -1,0 +1,12 @@
+<!-- Navigation -->
+{% if page.previous %}
+<nav class="nav-block navB navL">
+    <a id="cpprev" href="{{ site.baseurl }}{{ page.previous.url }}">Prev</a>
+</nav>
+{% endif %}
+
+{% if page.next %}
+<nav class="nav-block navB navR">
+    <a id="cpnext" href="{{ site.baseurl }}{{ page.next.url }}">Next</a>
+</nav>
+{% endif %}

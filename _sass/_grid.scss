@@ -1,0 +1,49 @@
+.grid-list {
+    @include BLO(auto, auto); top:0; left: 0;
+    display:flex;flex-wrap:wrap;justify-content:center;
+}
+
+.grid-item {
+    @include BLO(15em,auto,1em);@include shadow();
+    text-decoration:none;overflow:hidden;
+    .grid-img {
+        @include BLO(100%, auto); position: relative;
+        img {
+            @include BLO($w: 100%, $h: auto);
+            @include transition(transform);
+        }
+        &:before {
+            @include FILL();background:var(--sec-color);
+            content:'';z-index:1;opacity:0;
+            @include transition(opacity);
+        }
+        &:after {
+            @include FILL();content:'';z-index:2;
+            margin: 4px; border: 3px double var(--ter-color);
+            @include transition(opacity, border);
+        }
+        figcaption {
+            @include FILL(); @include tshadow();
+            font-family: $sec-font-family;
+            color:var(--t-white);font-size:2em;font-weight:bold;
+            display: flex; justify-content: center; z-index: 10;
+            align-items: center; text-align: center; opacity: 0;
+            div { position:absolute;opacity:0.65;font-size:0.65em; }
+            .gfct { top: 0.25em; }
+            .gfcb { bottom: 0.25em; }
+            @include transition(opacity);
+        }
+    }
+    &:hover {
+        img { @include transform(0,0,3deg,1.3); }
+        border-color: var(--ter-color);
+        .grid-img {
+            &:after,&:before { opacity: 0.85; }
+            figcaption { opacity: 1; }
+        }
+    }
+    &:active {
+        outline: 0.5em solid rgba(144,144,144,0.2);
+    }
+    @include transition(background, border, transform);
+}

@@ -1,0 +1,20 @@
+<nav id="header" class="navbar">
+    <div id="nav-wrapper">
+        {% include backlink.html %}
+
+        {% include menu.html %}
+
+        {% if page.layout == "chapter" %}
+        {% include chapters.html %}
+        {% endif %}
+
+        {% if page.layout == "default" %}
+        {% include search.html %}
+        {% endif %}
+
+        <div id="title">
+            {% if page.layout == "chapter" %}
+            {% else %}{{ page.title }}{% endif %}
+        </div>
+    </div>
+</nav>

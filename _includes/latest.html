@@ -1,0 +1,61 @@
+<input type="checkbox" id="latest-nav" class="sb-ctrl">
+<nav id="left-sidebar" class="sidebar">
+    <label for="latest-nav" class="nav-block navL navB">
+        <a>Last</a>
+    </label>
+    <div class="list-wrapper">
+        <ul>
+            {% for _coll in site.collections %}
+            {% if _coll.docs.first.layout == "novel" %}
+
+            <b class="list-sub"> {{ _coll.docs.first.title }}: </b>
+            {% assign ii = 0 %}
+
+            {% for _page in site[_coll.label] reversed %}
+            {% if ii == 8 %} {% break %} {% endif %}
+            {% if _page.layout == "chapter" %}
+
+            <li>
+                <a href="{{ _page.url | prepend: site.baseurl }}">
+                    <i class="list-itemR"
+                       id="{{_page.collection}}{{_page.slug}}">
+                        {{ _page.date | date_to_string }}
+                    </i>
+                    <span>
+                        {{ _page.slug | plus: 0 }}.
+                        {{ _page.title }}
+                    </span>
+                </a>
+            </li>
+            {% assign ii = ii | plus: 1 %}
+
+            {% endif %}
+            {% endfor %}
+
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+
+<script type='text/javascript'>
+ {% for _coll in site.collections %}
+ {% if _coll.docs.first.layout == "novel" %}
+
+ {% assign ii = 0 %}
+
+ {% for _page in site[_coll.label] reversed %}
+ {% if ii == 8 %} {% break %} {% endif %}
+ {% if _page.layout == "chapter" %}
+
+ var el=document.getElementById("{{_page.collection}}{{_page.slug}}");
+ if(el)el.textContent=moment("{{ _page.date | date_to_rfc822 }}").fromNow();
+
+ {% assign ii = ii | plus: 1 %}
+
+ {% endif %}
+ {% endfor %}
+
+ {% endif %}
+ {% endfor %}
+</script>

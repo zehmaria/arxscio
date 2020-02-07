@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<article>
+    {{ content }}
+</article>
+
+<script type='text/javascript'>
+ var ht = JSON.parse(localStorage.getItem('history')) || {};
+ ht["{{ page.collection }}"] =  {
+     link:  "{{ page.url | prepend: site.baseurl }}",
+     chapter: "{{ page.slug | plus : 0 }}",
+     title: "{{ page.title }}"
+ };
+ localStorage.setItem('history', JSON.stringify(ht));
+
+ window.onload = function()  {
+     document.onkeyup = function(evt) {
+         evt = evt || window.event;
+         switch(evt.keyCode) {
+             case 39:
+                 var next = document.getElementById('cpnext');
+                 if(next!=null) window.location.href = next.href;
+                 break;
+             case 37:
+                 var prev = document.getElementById('cpprev');
+                 if(prev!=null) window.location.href = prev.href;
+         }
+     };
+ };
+</script>

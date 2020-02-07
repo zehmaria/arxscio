@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<article class="novel">
+    {% if page.status == "unreleased" %}
+    {% else %}
+    <a href="{{ site.baseurl }}{{ page.permalink }}/0001"
+       id="lastvisited" class="novel-cover grid-item">
+        <figure class="grid-img">
+            <figcaption id="continue"> Start </figcaption>
+            <img src="{{ site.baseurl }}/pics/novels/{{ page.novel }}.h.png"
+                 alt="{{ page.title }}">
+        </figure>
+    </a>
+    <p class="novel-status"> <b>Status:</b> {{ page.status }} </p>
+    <div class="novel-content"> {{ content }}</div>
+
+    <div class="list-wrapper" style="clear:right;">
+        <hr>
+        <ul>
+            <b class="list-title"> Table of Contents: </b>
+            {% for _page in site[page.collection] reversed %}
+            {% if _page.layout == "chapter" %}
+            <li>
+                <a href="{{ _page.url | prepend: site.baseurl }}">
+                    <i class="list-itemR">
+                        {{ _page.date | date_to_string }}
+                    </i>
+                    <b> Chapter {{ _page.slug | plus: 0 }} : </b>
+                    {{ _page.title }}
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</article>
+
+<script type='text/javascript'>
+ if (localStorage) {
+     var ht = JSON.parse(localStorage.getItem('history')) || {};
+     if (ht["{{ page.novel }}"]) {
+         document.getElementById("lastvisited").href =
+             ht["{{ page.novel }}"].link;
+         document.getElementById("continue").textContent =
+             "Continue"
+     }
+ }
+</script>

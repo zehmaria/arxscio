@@ -1,0 +1,34 @@
+@media (max-width: 768px) {
+    :root { --font-size: 14px; }
+    html { font-size: 14px; }
+}
+
+@media (min-width: 768px) {
+    :root { --font-size: 14px; }
+    html { font-size: 14px; }
+}
+
+@media (min-width: 1000px) {
+    :root { --font-size: 16px; }
+    html { font-size: 16px; }
+}
+
+@media (min-width: 1400px) {
+    :root { --font-size: 18px; }
+    html { font-size: 18px; }
+}
+
+@media screen and (min-width: $cresponse) {
+    :root { --nav-size: 1.25em; }
+}
+
+// --
+
+.navL { left: 0em; }
+.navR { right: 0em; }
+.navT { top: 0em; }
+.navB { bottom: 0em; }
+.navM { top: 50%; transform: translate(0%, -50%); }
+.navC { left: 50%; transform: translate(-50%, 0%); }
+
+//--

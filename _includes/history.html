@@ -1,0 +1,36 @@
+<input type="checkbox" id="history-nav" class="sb-ctrl">
+<nav id="right-sidebar" class="sidebar">
+    <label for="history-nav" class="nav-block navR navB">
+        <a>Hist</a>
+    </label>
+    <div class="list-wrapper">
+        <ul>
+            {% for _page in site.collections %}
+            {% if _page.docs.first.layout == "novel" %}
+            {% assign nl = _page.docs.first %}
+            <li id="{{nl.novel}}">
+                <a href="{{ site.baseurl }}{{nl.url}}" id="{{nl.novel}}link">
+                    <b class="list-itemR">{{nl.title}}</b>
+                    <i id="{{nl.novel}}ch">...</i>
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+
+<script type='text/javascript'>
+ if (localStorage) {
+     var ht = JSON.parse(localStorage.getItem('history')) || {};
+     for (var ch in ht) {
+         if (document.getElementById(ch)) {
+             document.getElementById(ch).style.display ='block';
+             document.getElementById(ch+"link").href = ht[ch].link;
+             document.getElementById(ch+"ch").textContent =
+                 ht[ch].chapter + ". " + ht[ch].title;
+         }
+     }
+ }
+</script>
+

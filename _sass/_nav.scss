@@ -1,0 +1,30 @@
+.navbar {
+    @include BLO(auto,var(--nav-width));
+    @include POS(fixed,$l:0,$r:0,$zi:15,$o:visible);
+    background: var(--bg-color);opacity:0.9;
+    height:calc(2 * var(--nav-size));
+}
+#footer{ bottom:0; } #header{ top:0; }
+#title {
+    @include ELLIP();@include tshadow();text-align:center;
+    @include PAD(0.25em,0.25em);color:var(--pri-color);
+    font-size:var(--nav-size);font-weight: bold;line-height:2;
+}
+#nav-wrapper {
+    position:relative;height:100%;width:100%;@include PAD(4em,4em);
+    max-width:calc(#{$max-width} * var(--font-size));margin:auto;
+}
+//--
+.nav-block {
+    @include POS(absolute,$zi:20,$o:visible);@include tshadow();
+    width:auto;height:auto;margin:0.25em;padding:0;
+    font-size:var(--nav-size);cursor: pointer;line-height:1.5;
+    a {
+        @include BLO(4em,$ta:center,$cl:var(--pri-color));
+        @include noselect();text-decoration:none;font-weight:bold;
+    }
+    &:hover a { color:var(--sec-color); }
+    &:active a { background: rgba(144,144,144,0.2); }
+}
+
+//--

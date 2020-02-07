@@ -1,0 +1,19 @@
+<section class="grid-list">
+    {% for _cl in site.collections %}
+    {% if _cl.docs.first.layout == "novel" %}
+    <a href="{{ site.baseurl }}{{ _cl.docs.first.url }}" class="grid-item">
+        <figure class="grid-img">
+            <figcaption>
+                <div class="gfct">{{_cl.docs.first.status}}</div>
+                {{_cl.docs.first.title}}
+                <div class="gfcb">
+                    {{ _cl.docs.size | plus: -1 }} Chapters
+                </div>
+            </figcaption>
+            <img src="{{ site.baseurl }}/pics/novels/{{ _cl.docs.first.novel }}.png"
+                 alt="{{ _cl.docs.first.title }}">
+        </figure>
+    </a>
+    {% endif %}
+    {% endfor %}
+</section>

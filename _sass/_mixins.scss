@@ -1,0 +1,109 @@
+// Basic Layout setting using @mixin. For more details check documentation: http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins
+@mixin FILL(){position:absolute;left:0;right:0;top:0;bottom:0;}
+@mixin ELLIP(){overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+@mixin BLO($w: auto, $h: auto, $m: 0, $p: 0, $b: 0, $bg: none, $cl: inherit, $ta: auto, $d: block, $op: 1) 
+{ margin: $m; padding: $p; border: $b; width: $w; height: $h; display: $d; background: $bg; color: $cl; text-align: $ta; opacity: $op; }
+
+// Basic Position setting
+@mixin POS($p: static, $l: auto, $r: auto, $t: auto, $b: auto, $f: none, $o: auto, $zi: auto)  { position: $p; left: $l; right: $r; top: $t; bottom: $b; float: $f; overflow: $o; z-index: $zi; }
+@mixin XY($l,$r,$t,$b){left:$l;right:$r;top:$t;bottom:$b;}
+
+// Different paddings depending on directions, for easier responsiveness
+@mixin PAD($pl:0, $pr:0, $pt:0, $pb:0)  { padding-top: $pt; padding-right: $pr; padding-left: $pl; padding-bottom: $pb; }
+
+// Set css3 rotation
+// @each is used here and in the #menu ID, check out documentation: http://sass-lang.com/documentation/file.SASS_REFERENCE.html#each-directive
+@mixin rotate($a) { @each $v in webkit, moz, ms, o { -#{$v}-transform: rotate($a);  } transform: rotate($a); }
+
+// Set css3 transitions
+@mixin trans($t) { @each $v in webkit, moz, ms, o { -#{$v}-transition: all $t ease-out; } transition: all $t ease-out; }
+
+@mixin transition($a...) {
+    $t: 400ms; $f: ease-out;
+    @each $v in webkit, moz, ms, o {
+        -#{$v}-transition: none $t $f;
+        -#{$v}-transition-property: $a;
+    }
+    transition: none $t $f;
+    transition-property: $a;;
+}
+
+// Set crisp rendering
+@mixin crisp() {
+    image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor;
+}
+// Set shadow
+@mixin inshadow($b: 3px, $a: 0.3, $h: 0, $v: 0) {
+    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: inset $h $v $b rgba(0, 0, 0, $a); } box-shadow: inset $h $v $b rgba(0, 0, 0, $a);
+}
+@mixin tshadow($b:1px,$a:0.5,$h:1px,$v:1px) {
+    text-shadow: $h $v $b rgba(0,0,0,$a);
+}
+
+// Set rounded border
+@mixin roundIt($a, $b: $a, $c: $a, $d : $a) { @each $v in webkit, moz, ms, o { -#{$v}-border-radius: $a $b $c $d; } border-radius: $a $b $c $d; }
+// Set gradient
+@mixin gradient($t, $a, $b, $c, $d) { background: $d; @each $v in webkit, moz, ms, o { background-image: -#{$v}-radial-gradient($t at $a $b, $c, $d); } background: radial-gradient($t at $a $b, $c, $d); background-attachment: fixed; }
+@mixin lgradient($a, $b, $c, $d) {
+    background: $c;
+    @each $v in webkit, moz, ms, o {
+        background: -#{$v}-linear-gradient($a $b, $c $d);
+    }
+    background: linear-gradient($a $b, $c $d);
+    background-attachment: fixed
+}
+// Set css3 rotation-scaling
+@mixin rotSca($a, $b) { @each $v in webkit, moz, ms, o { -#{$v}-transform: rotate($a) scale($b);  } transform: rotate($a) scale($b); }
+@mixin scale($a) { @each $v in webkit, moz, ms, o { -#{$v}-transform: scale($a);  } transform: scale($a); }
+@mixin transform($x: 0, $y: 0, $a: 0, $s: 1) { @each $v in webkit, moz, ms, o { -#{$v}-transform: translate3d($x, $y, 0) rotate($a) scale($s);  } transform: translate($x, $y) rotate($a) scale($s); }
+//--
+@mixin contentbox() { -webkit-box-sizing: content-box;  -moz-box-sizing: content-box; box-sizing: content-box; }
+@mixin borderbox() { -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box; }
+//--
+@mixin toptriangle($l:0,$t:0em,$c:var(--sec-color)) {
+    &::before {
+        @include shadow(1px,0.2,-1px,-1px);background:$c;
+        position:absolute;content: '';transform:rotate(45deg);
+        z-index:-1;width:.75em;height:.75em;
+        top: calc(#{$t} - 0.375em);
+        left: calc(#{$l} - 0.375em);
+    }
+    &::after {
+        position:absolute;content: '';width:0;height:0;
+        border-left: 0.5em solid transparent;z-index:100;
+        border-right: 0.5em solid transparent;
+        border-bottom: 0.5em solid $c;
+        top: calc(#{$t} - 0.5em); left: calc(#{$l} - 0.5em);
+    }
+}
+//--
+@mixin bottomtriangle($l:0,$t:0em,$c:var(--sec-color)) {
+    &::before {
+        @include shadow(1px,0.2,-1px,1px);background:$c;
+        position:absolute;content: '';transform:rotate(-45deg);
+        z-index:-1;width:.75em;height:.75em;
+        bottom: calc(#{$t} - 0.375em);
+        left: calc(#{$l} - 0.375em);
+    }
+    &::after {
+        position:absolute;content: '';width:0;height:0;
+        border-left: 0.5em solid transparent;z-index:100;
+        border-right: 0.5em solid transparent;
+        border-top: 0.5em solid $c;
+        bottom: calc(#{$t} - 0.5em); left: calc(#{$l} - 0.5em);
+    }
+}
+
+@mixin noselect() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+// Set shadow
+@mixin shadow($b: 3px, $a: 0.3, $h: 0px, $v: 0px, $s: 0px) {
+    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: $h $v $b $s rgba(0, 0, 0, $a); } box-shadow: $h $v $b $s rgba(0, 0, 0, $a);
+}
