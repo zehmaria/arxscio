@@ -3,7 +3,9 @@
         @include POS(absolute,0,0,$zi:25,$o:visible);
         @include BLO(26em,auto,$cl:var(--t-white),
                      $bg:var(--sec-color),$d:none);
-        max-width: 100%;
+        max-width: calc(100% - 0.5em);
+        left:calc(0.25 * var(--nav-size));
+        right:calc(0.25 * var(--nav-size));
         ul {
             margin:4px;padding:8px;text-align:center;height:100%;
             border: 3px double var(--ter-color);overflow:auto;

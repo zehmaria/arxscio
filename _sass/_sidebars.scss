@@ -22,8 +22,11 @@
 }
 #dropdown {
     .nav-block {
-        max-width:calc(100% - 8.5em);margin-left:0;margin-right:0;
-        a {@include ELLIP();width:100%;@include PAD(0.5em,0.5em);}
+        max-width:calc(100% - 8.5em);
+        a {
+            @include ELLIP();width:100%;@include PAD(0.5em,0.5em);
+            margin-left:0;margin-right:0;
+        }
     }
     .list-wrapper{
         left:50%;right:auto;@include transform(-50%);

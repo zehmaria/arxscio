@@ -4,7 +4,8 @@
     background: var(--bg-color);opacity:0.9;
     height:calc(2 * var(--nav-size));
 }
-#footer{ bottom:0; } #header{ top:0; }
+#footer{ bottom:0; }
+#header{ top:0; }
 #title {
     @include ELLIP();@include tshadow();text-align:center;
     @include PAD(0.25em,0.25em);color:var(--pri-color);
@@ -17,13 +18,16 @@
 //--
 .nav-block {
     @include POS(absolute,$zi:20,$o:visible);@include tshadow();
-    width:auto;height:auto;margin:0.25em;padding:0;
-    font-size:var(--nav-size);cursor: pointer;line-height:1.5;
+    width:auto;height:auto;
+    font-size:var(--nav-size);cursor:pointer;line-height:1.5;
     a {
         @include BLO(4em,$ta:center,$cl:var(--pri-color));
         @include noselect();text-decoration:none;font-weight:bold;
+        margin:0.25em;
     }
-    &:hover a { color:var(--sec-color); }
+    &:hover a {
+        color:var(--sec-color);
+    }
     &:active a { background: rgba(144,144,144,0.2); }
 }
 
