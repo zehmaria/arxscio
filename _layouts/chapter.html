@@ -3,7 +3,19 @@ layout: default
 ---
 
 <article>
+    <h1>
+        <a class="ha" href="{{ site.baseurl }}{{ page.backlink }}">
+            {{ site[page.collection].first.title }}
+        </a>
+    </h1>
+    <h2>
+        Chapter {{ page.slug | plus: 0 }}:<br>
+        <span>{{page.title}}</span>
+    </h2>
+    <hr>
     {{ content }}
+    <hr>
+    {% include footer.html %}
 </article>
 
 <script type='text/javascript'>

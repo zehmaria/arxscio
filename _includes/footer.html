@@ -1,14 +1,6 @@
-<nav id="footer" class="navbar">
+<footer>
     <div id="nav-wrapper">
         {% include navigation.html %}
-
-        {% if page.layout == "default" %}
-        {% include latest.html %}
-        {% endif %}
-
-        {% if page.layout == "default" %}
-        {% include history.html %}
-        {% endif %}
 
         {% if page.layout == "novel" %}
         <div id="feed" class="nav-block navB navL">
@@ -18,14 +10,15 @@
         </div>
         {% endif %}
 
-        <div id="toTop" style="display:none;"
-             class="nav-block navB navC">
+        <div class="nav-block navB navC">
             <a href="#top">Top</a>
         </div>
     </div>
-</nav>
+</footer>
 
 
+
+<!-- HIDE TOP
 <script type='text/javascript'>
  document.getElementById("toTop").style.display = "none";
  window.onscroll = function() {
@@ -36,4 +29,4 @@
          document.getElementById("toTop").style.display = "none";
      }
  };
-</script>
+</script> -->

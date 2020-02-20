@@ -1,0 +1,78 @@
+<input type="checkbox" id="config-nav" class="sb-ctrl">
+<nav class="sidebar">
+    <li><label for="config-nav">Configuration</label></li>
+    <div class="list-hide">
+        <ul>
+            <li>
+                <div class="btt" onclick="_theme()">
+                    Dark Theme:
+                    <b class="list-itemR" id="dark-on">On</b>
+                    <b class="list-itemR" id="dark-off">Off</b>
+                </div>
+            </li>
+            <li id="font-li">
+                <span class="btt" id="font-rs" onclick="_freset()">
+                    Font:
+                </span>
+                <span class="list-itemR" id="font-ch">
+                    <b class="btt" onclick="_fminus()">-</b>
+                    <span id ="font-show"> 16 </span>
+                    <b class="btt" onclick="_fplus()">+</b>
+                </span>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- FONT&COLOR STUFF -->
+<script type='text/javascript'>
+ if (localStorage) {
+     document.getElementById("font-show").textContent = localStorage.getItem('fontsize');
+     function _freset() {
+         let style = window.getComputedStyle(el, null)
+                           .getPropertyValue('font-size');
+         let size = parseFloat(style);
+         localStorage.setItem('fontsize', size);
+         document.documentElement.style
+                 .setProperty('--font-size', size + "px");
+         document.getElementById("font-show").textContent = size;
+     }
+     function _fplus() {
+         let size = localStorage.getItem('fontsize');
+         size++; if(size>24)size=24;
+         localStorage.setItem('fontsize', size);
+         document.documentElement.style
+                 .setProperty('--font-size', size + "px");
+         document.getElementById("font-show").textContent = size;
+     }
+     function _fminus() {
+         let size = localStorage.getItem('fontsize');
+         size--; if(size<8)size=8;
+         localStorage.setItem('fontsize', size);
+         document.documentElement.style
+                 .setProperty('--font-size', size + "px");
+         document.getElementById("font-show").textContent = size;
+     }
+     function _theme() {
+         let currentMode = localStorage.getItem('theme');
+	       if (currentMode === "dark") {
+		         window.localStorage.setItem('theme', 'light');
+             document.documentElement.setAttribute('data-theme', 'light');
+             document.getElementById("dark-off").style.display = 'inline';
+             document.getElementById("dark-on").style.display = 'none';
+	       } else {
+		         window.localStorage.setItem('theme', 'dark');
+             document.documentElement.setAttribute('data-theme', 'darks');
+             document.getElementById("dark-off").style.display = 'none';
+             document.getElementById("dark-on").style.display = 'inline';
+	       }
+     }
+     if (localStorage.getItem('theme') === "dark") {
+         document.getElementById("dark-off").style.display = 'none';
+         document.getElementById("dark-on").style.display = 'inline';
+     } else {
+         document.getElementById("dark-off").style.display = 'inline';
+         document.getElementById("dark-on").style.display = 'none';
+     }
+ }
+</script>

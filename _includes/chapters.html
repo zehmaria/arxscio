@@ -1,15 +1,13 @@
 <input type="checkbox" id="chapters-nav" class="sb-ctrl">
-<nav id="dropdown" class="sidebar">
-    <label for="chapters-nav" class="nav-block navC navT">
-        <a>{{ page.slug | plus: 0 }}. {{ page.title }}</a>
-    </label>
-    <div class="list-wrapper">
+<nav class="sidebar">
+    <li><label for="chapters-nav">Chapters</label></li>
+    <div class="list-hide">
         <ul>
-            {% for _page in site[page.collection] %}
+            {% for _page in site[page.collection] reversed %}
             {% if _page.layout == "chapter" %}
             <li>
                 <a href="{{ site.baseurl }}{{ _page.url }}">
-                    <b> Chapter {{ _page.slug | plus: 0 }} : </b>
+                    <b> {{ _page.slug | plus: 0 }}. </b>
                     {{ _page.title }}
                 </a>
             </li>

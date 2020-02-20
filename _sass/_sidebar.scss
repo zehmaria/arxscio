@@ -1,28 +1,37 @@
 .sidebar {
+    >li { @include noselect(); }
+    .list-hide{
+        display:none;padding-left:16px;padding-right:16px;
+    }
     .list-wrapper {
-        @include POS(absolute,0,0,$zi:25,$o:visible);
-        @include BLO(26em,auto,$cl:var(--t-white),
-                     $bg:var(--sec-color),$d:none);
-        max-width: calc(100% - 0.5em);
-        left:calc(0.25 * var(--nav-size));
-        right:calc(0.25 * var(--nav-size));
-        ul {
-            margin:4px;padding:8px;text-align:center;height:100%;
-            border: 3px double var(--ter-color);overflow:auto;
-            max-height:calc(100vh - 2 * var(--nav-width) - 8px);
-            li {
-                text-align:left;
-                &:hover {
-                    background: rgba(0,0,0,0.1);
-                    border-bottom: 1px solid var(--ter-color);
-                }
-                &:active { background: rgba(0,0,0,0.25); }
-            }
+        @include POS(absolute,0,0,0,0,$zi:25,$o:visible);
+        @include BLO(24em,auto,$bg:var(--bg-color),$d:none);
+        @include shadow();
+        max-width:100%;max-height:100%;padding:4px;
+        &:before {
+            width:100%;height:100%;content:"";
+            display:block;position:absolute;left:0;top:0;
+            background:rgba(125,125,125,0.2);z-index:-1;
+        }
+        >ul {
+            overflow:auto;max-width:100%;max-height:100%;
+            margin:0px;padding:4px;text-align:center;height:100%;
+            font-family: $sec-font-family;
+            li {text-align:left;}
         }
     }
 }
-.sb-ctrl { position:fixed;left:-100%; }
+.sb-ctrl, .sb-ctrl-e, { position:fixed;left:-100%; }
 .sb-ctrl:checked + .sidebar {
-    .nav-block a {color:var(--sec-color);}
-    .list-wrapper {display:block;}
+    >.nav-block a {color:var(--sec-color);}
+    >.list-wrapper,>.list-hide {display:block;}
+    >li {
+        background: rgba(125,125,125,0.2);
+        border-color: var(--sec-color);
+        &>label:after{@include transform($a:45deg);}
+        &:active {
+            background: rgba(125,125,125,0.3);
+            border-color: var(--ter-color);
+        }
+    }
 }

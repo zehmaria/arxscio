@@ -3,53 +3,47 @@
 ---
 @charset "UTF-8";
 
+// Import FONTS
 /* merriweather-regular - latin */
 @font-face {
-    font-family: 'GFMerriweather';
+    font-family: 'GFMSwb';
     font-style: normal;
     font-weight: 400;
-    src: local('Merriweather Regular'), local('Merriweather-Regular'),
-         url('../fonts/merriweather-v21-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../fonts/merriweather-v21-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    src: local('Montserrat Regular'), local('Montserrat-Regular'),url('../fonts/montserrat-v14-latin-regular.woff2') format('woff2'),url('../fonts/montserrat-v14-latin-regular.woff') format('woff');
 }
-
-/* dancing-script-regular - latin */
+/* merriweather-regular - latin */
 @font-face {
-    font-family: 'GFDancingScript';
+    font-family: 'GFMWwb';
     font-style: normal;
     font-weight: 400;
-    src: local('Dancing Script'),
-         url('../fonts/dancing-script-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-         url('../fonts/dancing-script-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    src:local('Merriweather Regular'),local('Merriweather-Regular'),url('../fonts/merriweather-v21-latin-regular.woff2') format('woff2'),url('../fonts/merriweather-v21-latin-regular.woff') format('woff');
 }
 
-
-// Our variables
-$pri-font-family:  'GFMerriweather', Arial, sans-serif;
-$sec-font-family:  'GFDancingScript', Arial, sans-serif;
+// Variables
+$pri-font-family:  'GFMWwb', serif;
+$sec-font-family:  'GFMSwb', sans-serif;
+$thi-font-family:  'GFMWwb','GFMSwb', sans-serif;
 $pri-font-size:    16px;
 $small-font-size:  12px;
-$pri-line-height:  1.7;
+$pri-line-height:  1.6;
 $aresponse:        85em;
 $bresponse:        65em;
 $cresponse:        30em;
 
 $bg-l:             #f3f5f3;
 $bg-d:             #0e0e10;
-$text-white:       mix($bg-l,black,92%);
-$text-black:       mix($bg-d,white,92%);
+$text-white:       mix($bg-l,$bg-d,90%);
+$text-black:       mix($bg-d,$bg-l,90%);
 
 $pri-color:        #91A7AE;
-//$pri-color:        #cd596b;
-
 $sec-color:        #417090;
-$ter-color:        darken($sec-color,25);
+$ter-color:        darken($sec-color,15);
+$for-color:        #cd596b;
 
 $extra-color:      mix($bg-l,$bg-d,50%);
 
-// Width and Height of stuff
 $max-width:        51;
 
-// Import partials from `sass_dir` (defaults to `_sass`)
+// Import from _sass
 @import "mixins", "base", "list", "nav", "sidebar",
         "sidebars", "grid", "novel", "responsive";

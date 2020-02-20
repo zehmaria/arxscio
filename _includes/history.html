@@ -1,9 +1,7 @@
 <input type="checkbox" id="history-nav" class="sb-ctrl">
-<nav id="right-sidebar" class="sidebar">
-    <label for="history-nav" class="nav-block navR navB">
-        <a>Hist</a>
-    </label>
-    <div class="list-wrapper">
+<nav class="sidebar">
+    <li><label for="history-nav">Last Visited</label></li>
+    <div class="list-hide">
         <ul>
             {% for _page in site.collections %}
             {% if _page.docs.first.layout == "novel" %}
@@ -28,7 +26,7 @@
              document.getElementById(ch).style.display ='block';
              document.getElementById(ch+"link").href = ht[ch].link;
              document.getElementById(ch+"ch").textContent =
-                 ht[ch].chapter + ". " + ht[ch].title;
+                 "Chapter " + ht[ch].chapter;
          }
      }
  }

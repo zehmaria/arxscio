@@ -7,6 +7,12 @@
 
 {% if page.next %}
 <nav class="nav-block navB navR">
-    <a id="cpnext" href="{{ site.baseurl }}{{ page.next.url }}">Next</a>
+    <a id="cpnext" href="{{ site.baseurl }}{{ page.next.url }}">
+        {% if page.layout == "novel" %}
+        Start
+        {% else %}
+        Next
+        {% endif %}
+    </a>
 </nav>
 {% endif %}

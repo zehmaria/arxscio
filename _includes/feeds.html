@@ -1,0 +1,15 @@
+<input type="checkbox" id="feeds-nav" class="sb-ctrl">
+<nav class="sidebar">
+    <li><label for="feeds-nav">Atom Feeds</label></li>
+    <div class="list-hide">
+        <ul>
+            {% for _x in site.feed.collections %}
+            <li>
+                <a href="{{site.baseurl}}/feed/{{_x}}.xml">
+                    {{ site[_x].first.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

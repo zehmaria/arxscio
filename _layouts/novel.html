@@ -5,6 +5,20 @@ layout: default
 <article class="novel">
     {% if page.status == "unreleased" %}
     {% else %}
+    <h1>
+        <a class="ha" href="{{ site.baseurl }}{{ page.backlink }}">
+            {{site.title}}
+        </a>
+    </h1>
+
+    <h2>
+        {{site[page.collection].first.title}}<br>
+        <span>
+            {{site[page.collection].size|plus:-1}} Chapters |
+            {{page.status}}
+        </span>
+    </h2>
+    <hr>
     <a href="{{ site.baseurl }}{{ page.permalink }}/0001"
        id="lastvisited" class="novel-cover grid-item">
         <figure class="grid-img">
@@ -13,13 +27,17 @@ layout: default
                  alt="{{ page.title }}">
         </figure>
     </a>
-    <p class="novel-status"> <b>Status:</b> {{ page.status }} </p>
+
     <div class="novel-content"> {{ content }}</div>
 
     <div class="list-wrapper" style="clear:right;">
-        <hr>
         <ul>
-            <b class="list-title"> Table of Contents: </b>
+            <h3> Table of Contents </h3>
+            <div class="list-wrapper">
+                <input type="text" id="search-input"
+                       placeholder="Search...">
+                <ul id="results"></ul>
+            </div>
             {% for _page in site[page.collection] reversed %}
             {% if _page.layout == "chapter" %}
             <li>
@@ -33,9 +51,10 @@ layout: default
             </li>
             {% endif %}
             {% endfor %}
-        </div>
     </div>
     {% endif %}
+    <hr>
+    {% include footer.html %}
 </article>
 
 <script type='text/javascript'>
@@ -48,4 +67,10 @@ layout: default
              "Continue"
      }
  }
+ var sjs = SimpleJekyllSearch({
+     searchInput: document.getElementById('search-input'),
+     resultsContainer: document.getElementById('results'),
+     json: '{{site.baseurl}}/novels/{{page.collection}}.json',
+     searchResultTemplate: '<li><a href="{{ site.baseurl }}{url}" title="{group} | {number}"><i class="list-itemR">{date}</i><b>{number}:</b> {title}</a></li>'//,noResultsText:""
+ })
 </script>

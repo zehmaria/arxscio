@@ -1,0 +1,13 @@
+---
+layout: null
+---
+[
+    {% for post in site.heavensoddity %}
+    {
+        "title"    : "{{ post.title | escape }}",
+        "date"     : "{{ post.date | date_to_string }}",
+        "number"   : "Chapter {{ post.slug | plus: 0 }}",
+        "group"    : "{{ site[post.collection].first.title }}"
+    } {% unless forloop.last %},{% endunless %}
+    {% endfor %}
+]

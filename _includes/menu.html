@@ -1,87 +1,35 @@
-<!-- Main -->
-<input type="checkbox" id="main-nav" class="sb-ctrl">
-<nav id="main-sidebar" class="sidebar">
-    <label for="main-nav" class="nav-block navL navT">
-        <a>Menu</a>
+<div id="nav-top"></div>
+<input type="checkbox" id="side-ctrl" class="sb-ctrl-e">
+<nav id="side-nav" class="sidebar">
+    <label for="side-ctrl" class="nav-block navL navT">
+        <span class="line top">
+        </span>
+	      <span class="line center"></span>
+	      <span class="line bottom">
+        </span>
     </label>
     <div class="list-wrapper">
         <ul>
-            <li> <a href="{{ site.baseurl }}/">Home</a> </li>
-            <li> <a href="https://www.patreon.com/arxscio">Patreon</a> </li>
-            <li> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BBTNANVNRCXEC&source=url">Paypal</a> </li>
-            <li> <a href="https://discord.gg/WFuHg4f">Discord</a> </li>
-            <li> <a href="https://www.royalroad.com/profile/112789/fictions">Royal Road</a> </li>
-            <li> <a href="https://www.scribblehub.com/profile/21207/arxscio/">Scribble Hub</a> </li>
-            <li>
-                <div class="btt" onclick="_theme()">
-                    Dark Theme:
-                    <b class="list-itemR" id="dark-on">On</b>
-                    <b class="list-itemR" id="dark-off">Off</b>
-                </div>
-            </li>
-            <li>
-                <span class="btt" onclick="_freset()">
-                    Font:
-                </span>
-                <span class="list-itemR font-ch">
-                    <b class="btt" onclick="_fminus()">-</b>
-                    <span id ="font-show"> 16 </span>
-                    <b class="btt" onclick="_fplus()">+</b>
-                </span>
-            </li>
+            <li><a href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="https://www.patreon.com/arxscio">Patreon</a></li>
+            <li> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BBTNANVNRCXEC&source=url">Paypal</a></li>
+
+            {% include links.html %}
+            {% include feeds.html %}
+            {% include config.html %}
+
+            {% if page.layout == "chapter" %}
+            {% include chapters.html %}
+            {% endif %}
+
+            {% if page.layout == "default" %}
+            {% include latest.html %}
+            {% endif %}
+
+            {% if page.layout == "default" %}
+            {% include history.html %}
+            {% endif %}
         </ul>
+
     </div>
 </nav>
-
-
-<script type='text/javascript'>
- if (localStorage) {
-     document.getElementById("font-show").textContent = localStorage.getItem('fontsize');
-     function _freset() {
-         let style = window.getComputedStyle(el, null)
-                           .getPropertyValue('font-size');
-         let size = parseFloat(style);
-         localStorage.setItem('fontsize', size);
-         document.documentElement.style
-                 .setProperty('--font-size', size + "px");
-         document.getElementById("font-show").textContent = size;
-     }
-     function _fplus() {
-         let size = localStorage.getItem('fontsize');
-         size++; if(size>24)size=24;
-         localStorage.setItem('fontsize', size);
-         document.documentElement.style
-                 .setProperty('--font-size', size + "px");
-         document.getElementById("font-show").textContent = size;
-     }
-     function _fminus() {
-         let size = localStorage.getItem('fontsize');
-         size--; if(size<8)size=8;
-         localStorage.setItem('fontsize', size);
-         document.documentElement.style
-                 .setProperty('--font-size', size + "px");
-         document.getElementById("font-show").textContent = size;
-     }
-     function _theme() {
-         let currentMode = localStorage.getItem('theme');
-	       if (currentMode === "dark") {
-		         window.localStorage.setItem('theme', 'light');
-             document.documentElement.setAttribute('data-theme', 'light');
-             document.getElementById("dark-off").style.display = 'inline';
-             document.getElementById("dark-on").style.display = 'none';
-	       } else {
-		         window.localStorage.setItem('theme', 'dark');
-             document.documentElement.setAttribute('data-theme', 'darks');
-             document.getElementById("dark-off").style.display = 'none';
-             document.getElementById("dark-on").style.display = 'inline';
-	       }
-     }
-     if (localStorage.getItem('theme') === "dark") {
-         document.getElementById("dark-off").style.display = 'none';
-         document.getElementById("dark-on").style.display = 'inline';
-     } else {
-         document.getElementById("dark-off").style.display = 'inline';
-         document.getElementById("dark-on").style.display = 'none';
-     }
- }
-</script>

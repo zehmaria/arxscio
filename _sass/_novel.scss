@@ -1,14 +1,14 @@
+.novel-cover{margin:auto;margin-top:1em;width:100%;height: auto;}
 
-.novel-status {
-    font-family:$sec-font-family; float: right;
-    margin-top: 0.75em; margin-bottom: 0.75em;
-    font-size: 1.2em; line-height: 1.5;
+#search-input {
+    width:100%;margin:0;padding:0;line-height:1.5;
+    @include PAD(1.75em,1.75em);font-family: $pri-font-family;
+    background:rgba(125,125,125,0.05);font-size:1.1em;
+    border: 1px solid rgba(125,125,125,0.3);color:var(--t-color1);
 }
-
-.novel-cover {
-    margin: auto;
-    margin-top: 1em;
-    width: 100%; height: auto;
+#results {
+    background:rgba(125,125,125,0.05);margin-top:0;
+    text-align:center;line-height:2;li{text-align:left;}
 }
 
 //**name**![map](./map.png#map)

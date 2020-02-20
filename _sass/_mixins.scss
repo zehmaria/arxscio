@@ -19,7 +19,7 @@
 @mixin trans($t) { @each $v in webkit, moz, ms, o { -#{$v}-transition: all $t ease-out; } transition: all $t ease-out; }
 
 @mixin transition($a...) {
-    $t: 400ms; $f: ease-out;
+    $t: 250ms; $f: ease-out;
     @each $v in webkit, moz, ms, o {
         -#{$v}-transition: none $t $f;
         -#{$v}-transition-property: $a;
@@ -33,9 +33,23 @@
     image-rendering: optimizeSpeed; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast; image-rendering: pixelated; image-rendering: optimize-contrast; -ms-interpolation-mode: nearest-neighbor;
 }
-// Set shadow
-@mixin inshadow($b: 3px, $a: 0.3, $h: 0, $v: 0) {
-    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: inset $h $v $b rgba(0, 0, 0, $a); } box-shadow: inset $h $v $b rgba(0, 0, 0, $a);
+// Set shadows
+@mixin noshadow() {
+    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: none; }
+    box-shadow: none;
+}
+@mixin cshadow($c:#fff, $b:6px, $s: 2px) {
+    background:$c;
+    @each $v in webkit,moz,ms,o{-#{$v}-box-shadow: 0 0 $b $s $c;}
+    box-shadow: 0 0 $b $s $c;
+}
+@mixin shadow($b:3px,$a:0.5,$h:0px,$v:0px,$s:0px) {
+    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: $h $v $b $s rgba(0, 0, 0, $a); }
+    box-shadow: $h $v $b $s rgba(0, 0, 0, $a);
+}
+@mixin inshadow($b:1px,$a:0.5,$h:0,$v:0) {
+    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: inset $h $v $b rgba(0, 0, 0, $a); }
+    box-shadow: inset $h $v $b rgba(0, 0, 0, $a);
 }
 @mixin tshadow($b:1px,$a:0.5,$h:1px,$v:1px) {
     text-shadow: $h $v $b rgba(0,0,0,$a);
@@ -103,7 +117,12 @@
     -ms-user-select: none;
     user-select: none;
 }
-// Set shadow
-@mixin shadow($b: 3px, $a: 0.3, $h: 0px, $v: 0px, $s: 0px) {
-    @each $v in webkit, moz, ms, o { -#{$v}-box-shadow: $h $v $b $s rgba(0, 0, 0, $a); } box-shadow: $h $v $b $s rgba(0, 0, 0, $a);
+
+@mixin hrtxt() {
+    display:flex;justify-content:center;align-items:center;
+    &:before, &:after {
+        content:'';border-top: 1px solid rgba(125,125,125,0.3);
+        margin: 0 0.5em 0 0; flex: 1 0 0.5em;
+    }
+    &:after { margin: 0 0 0 0.5em; }
 }

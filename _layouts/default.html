@@ -2,24 +2,35 @@
 <html lang="en" id="top">
     {% include head.html %}
     <body>
-        {% include header.html %}
         <main> {{ content }} </main>
-        {% include footer.html %}
+        {% include menu.html %}
     </body>
 </html>
 
 <script>
- var ctrls = document.querySelectorAll('.sb-ctrl');
- ctrls.forEach(function(i) {
+ var ct1 = document.querySelectorAll('.sb-ctrl');
+ var ct2 = document.querySelectorAll('.sb-ctrl-e');
+ ct1.forEach(function(i) {
      i.addEventListener("click", function(e) {
-         ctrls.forEach(function(j){if(j.id!==i.id)j.checked=false;});
+         ct1.forEach(function(j){if(j.id!==i.id)j.checked=false;});
          e.stopPropagation();
      });
+ });
+ ct2.forEach(function(i) {
+     i.addEventListener("click", function(e) {
+         ct1.forEach(function(j){if(j.id!==i.id)j.checked=false;});
+         ct2.forEach(function(j){if(j.id!==i.id)j.checked=false;});
+         e.stopPropagation();
+     });
+ });
+ document.querySelectorAll('.sidebar-e').forEach(function(i) {
+     i.addEventListener("click",function(e){e.stopPropagation();});
  });
  document.querySelectorAll('.sidebar').forEach(function(i) {
      i.addEventListener("click",function(e){e.stopPropagation();});
  });
  document.addEventListener("click",function() {
-     ctrls.forEach(function(j){j.checked=false;});
+     ct1.forEach(function(j){j.checked=false;});
+     ct2.forEach(function(j){j.checked=false;});
  });
 </script>
