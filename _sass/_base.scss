@@ -70,10 +70,12 @@ article {padding-left:1em;padding-right:1em;}
 p{margin-top:1em;margin-bottom:1em;}
 h1,h2,h3{
     @include tshadow(); font-weight: bold;
-    color: var(--pri-color); text-align:center;
+    color: var(--pri-color); text-align:center;line-height:1.5;
     font-family:$thi-font-family;margin-top:1em;margin-bottom:1em;
 }
-h1{font-family: $thi-font-family;font-size:2.5em;line-height:3;}
+h1{
+    font-family: $thi-font-family;font-size:2.5em;margin-top:2em;margin-bottom:2em;
+}
 h2{
     font-size:1.5em;
     span{font-size:0.85em;}
